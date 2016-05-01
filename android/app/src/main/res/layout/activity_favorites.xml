@@ -13,22 +13,36 @@
         tools:context=".FavoritesActivity"
         android:background="#ffffff">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listFavorites"/>
 
-            <TextView
-                android:id="@+id/textWelcomeBack"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:text="WELCOME BACK TO MOWL"
-                android:textStyle="bold"
-                android:textSize="24sp"
-                android:gravity="center" />
 
-        </LinearLayout>
+
+
+
+
+
+
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/textWelcomeBack"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="0.1"-->
+                <!--android:text="WELCOME BACK TO MOWL"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="24sp"-->
+                <!--android:gravity="center" />-->
+
+        <!--</LinearLayout>-->
 
 
 

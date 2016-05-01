@@ -51,8 +51,29 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent i = new Intent(MainActivity.this, FavoritesActivity.class);
-                startActivity(i);
+                Intent i;
+                switch (position){
+                    case 0:
+                        // Already in MainActivity - don't switch to a new activity.
+                        return;
+                    case 1:
+                        // Switch to FavoritesActivity.
+                        i = new Intent(MainActivity.this, FavoritesActivity.class);
+                        startActivity(i);
+                    case 2:
+                        // Switch to SearchActivity.
+                        // TODO: SEARCH
+                        return;
+                    case 3:
+                        // Switch to MapActivity.
+                        i = new Intent(MainActivity.this, MapActivity.class);
+                        startActivity(i);
+                    case 4:
+                        // Switch to AddEventActivity.
+                        // TODO: ADDEVENT
+                    default:
+                        return;
+                }
             }
         });
     }

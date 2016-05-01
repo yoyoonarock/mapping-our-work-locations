@@ -56,9 +56,24 @@ public class FavoritesActivity extends AppCompatActivity
                 Intent i;
                 switch (position){
                     case 0:
+                        // Switch to MainActivity.
                         i = new Intent(FavoritesActivity.this, MainActivity.class);
                         startActivity(i);
                     case 1:
+                        // Already in FavoritesActivity - don't switch to a new activity.
+                        return;
+                    case 2:
+                        // Switch to SearchActivity.
+                        // TODO: SEARCH
+                        return;
+                    case 3:
+                        // Switch to MapActivity.
+                        i = new Intent(FavoritesActivity.this, MapActivity.class);
+                        startActivity(i);
+                    case 4:
+                        // Switch to AddEventActivity.
+                        // TODO: ADDEVENT
+                    default:
                         return;
                 }
             }

@@ -30,13 +30,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via username/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
@@ -298,17 +304,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUser;
         private final String mPassword;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
+        UserLoginTask(String user, String password) {
+            mUser = user;
             mPassword = password;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
+
+//            String login_url = "http://10.0.2.2/webapp/login.php";
+//
+//            URL url = new URL(login_url);
+//            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//            httpURLConnection.setRequestMethod("POST");
+//            httpURLConnection.setDoOutput(true);
+//            httpURLConnection.setDoInput(true);
+//            OutputStream outputStream = httpURLConnection.getOutputStream();
+//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+//            String data = URLEncoder.encode("login_name", "UTF-8") + "=" +
+//                    URLEncoder.encode(mUser,"UTF-8") + "&" +
+//                    URLEncoder.encode("login_pass","UTF-8") + "&" +
+//                    URLEncoder.encode(mPassword,"UTF-8") + "&";
 
             try {
                 // Simulate network access.
@@ -319,7 +339,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
+                if (pieces[0].equals(mUser)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
