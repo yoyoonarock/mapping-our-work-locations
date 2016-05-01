@@ -83,7 +83,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         startActivity(i);
                     case 2:
                         // Switch to SearchActivity.
-                        // TODO: SEARCH
+                        i = new Intent(MapActivity.this, SearchActivity.class);
+                        startActivity(i);
                         return;
                     case 3:
                         // Already in MapActivity - don't switch to a new activity.
@@ -105,7 +106,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 

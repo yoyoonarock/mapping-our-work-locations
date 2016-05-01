@@ -49,6 +49,11 @@
             android:label="@string/title_activity_favorites">
         </activity>
 
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search">
+        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

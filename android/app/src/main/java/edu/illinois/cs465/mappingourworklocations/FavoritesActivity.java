@@ -64,7 +64,8 @@ public class FavoritesActivity extends AppCompatActivity
                         return;
                     case 2:
                         // Switch to SearchActivity.
-                        // TODO: SEARCH
+                        i = new Intent(FavoritesActivity.this, SearchActivity.class);
+                        startActivity(i);
                         return;
                     case 3:
                         // Switch to MapActivity.
@@ -87,7 +88,6 @@ public class FavoritesActivity extends AppCompatActivity
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Favorites Navigation!");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 

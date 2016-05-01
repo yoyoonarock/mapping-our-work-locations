@@ -11,11 +11,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
-
-public class MainActivity extends AppCompatActivity
+/**
+ * Created by Jason on 4/30/2016.
+ */
+public class SearchActivity extends AppCompatActivity
 {
     /**
      *  Similar format for all activities with a navigation drawer.
@@ -27,15 +29,13 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
 
-    private RelativeLayout relativeLayoutFavorites;
-    private RelativeLayout relativeLayoutSearch;
-    private RelativeLayout relativeLayoutMap;
-
+    private Button btnReset;
+    private Button btnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -47,31 +47,19 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        relativeLayoutFavorites = (RelativeLayout) findViewById(R.id.relativeLayoutFavorites);
-        relativeLayoutSearch = (RelativeLayout) findViewById(R.id.relativeLayoutSearch);
-        relativeLayoutMap = (RelativeLayout) findViewById(R.id.relativeLayoutMap);
+        btnReset = (Button) findViewById(R.id.btnReset);
+        btnSearch = (Button) findViewById(R.id.btnSearch);
 
-        relativeLayoutFavorites.setOnClickListener(new View.OnClickListener() {
+        btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, FavoritesActivity.class);
-                startActivity(i);
+                //TODO:
             }
         });
-
-        relativeLayoutSearch.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(i);
-            }
-        });
-
-        relativeLayoutMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, MapActivity.class);
-                startActivity(i);
+                //TODO:
             }
         });
 
@@ -89,20 +77,20 @@ public class MainActivity extends AppCompatActivity
                 Intent i;
                 switch (position){
                     case 0:
-                        // Already in MainActivity - don't switch to a new activity.
-                        return;
+                        // Switch to MainActivity.
+                        i = new Intent(SearchActivity.this, MainActivity.class);
+                        startActivity(i);
                     case 1:
                         // Switch to FavoritesActivity.
-                        i = new Intent(MainActivity.this, FavoritesActivity.class);
+                        i = new Intent(SearchActivity.this, FavoritesActivity.class);
                         startActivity(i);
+                        return;
                     case 2:
-                        // Switch to SearchActivity.
-                        i = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(i);
+                        // Already in FavoritesActivity - don't switch to a new activity.
                         return;
                     case 3:
                         // Switch to MapActivity.
-                        i = new Intent(MainActivity.this, MapActivity.class);
+                        i = new Intent(SearchActivity.this, MapActivity.class);
                         startActivity(i);
                     case 4:
                         // Switch to AddEventActivity.
@@ -176,15 +164,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     /**
      *  Activity-specific functions begin here.
      */
-
-
-
 
 }
