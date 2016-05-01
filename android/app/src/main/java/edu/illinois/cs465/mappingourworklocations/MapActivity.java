@@ -13,18 +13,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.nio.MappedByteBuffer;
 
 
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener
 {
     /**
      *  Similar format for all activities with a navigation drawer.
@@ -160,6 +162,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     /**
+     *  Activity-specific functions begin here.
+     */
+
+    /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
@@ -177,13 +183,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng grainger = new LatLng(40.1125, -88.2269);
         LatLng dcl = new LatLng(40.1131, -88.2264);
         LatLng eceb = new LatLng(40.1149, -88.2280);
-        mMap.addMarker(new MarkerOptions().position(siebel).title("Marker in Siebel"));
-        mMap.addMarker(new MarkerOptions().position(grainger).title("Marker in Grainger"));
-        mMap.addMarker(new MarkerOptions().position(dcl).title("Marker in DCL"));
-        mMap.addMarker(new MarkerOptions().position(eceb).title("Marker in ECEB"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(siebel));
+        mMap.addMarker(new MarkerOptions().position(siebel).title("Siebel Center"));
+        mMap.addMarker(new MarkerOptions().position(grainger).title("Grainger Library"));
+        mMap.addMarker(new MarkerOptions().position(dcl).title("Digital Computer Laboratory"));
+        mMap.addMarker(new MarkerOptions().position(eceb).title("Electrical and Computer Engineering Building"));
+
         LatLng center = new LatLng(40.1140, -88.2265);
         moveToCurrentLocation(center);
+
+        mMap.setOnInfoWindowClickListener(this);
     }
 
     private void moveToCurrentLocation(LatLng currentLocation)
@@ -193,15 +201,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.zoomTo(17), 2000, null);
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Info window clicked", Toast.LENGTH_SHORT).show();
 
-
-    /**
-     *  Activity-specific functions begin here.
-     */
-
-
-
-
+        //TODO: create intent
+    }
 }
 
 

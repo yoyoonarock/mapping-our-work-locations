@@ -4,7 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Sign In</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -18,5 +18,12 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+
+    <string name="title_activity_main">Mapping Our Work Locations</string>
+    <string name="title_activity_favorites">Favorites</string>
+    <string name="title_activity_search">Search</string>
     <string name="title_activity_map">Map</string>
+
+    <string name="title_activity_results">Search Results</string>
 </resources>

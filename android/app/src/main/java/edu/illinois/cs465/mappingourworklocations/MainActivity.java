@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 
 public class MainActivity extends AppCompatActivity
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
+
+    private RelativeLayout relativeLayoutFavorites;
+    private RelativeLayout relativeLayoutSearch;
+    private RelativeLayout relativeLayoutMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,34 @@ public class MainActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        relativeLayoutFavorites = (RelativeLayout) findViewById(R.id.relativeLayoutFavorites);
+        relativeLayoutSearch = (RelativeLayout) findViewById(R.id.relativeLayoutSearch);
+        relativeLayoutMap = (RelativeLayout) findViewById(R.id.relativeLayoutMap);
+
+        relativeLayoutFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, FavoritesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        relativeLayoutSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
+
+        relativeLayoutMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void addDrawerItems() {
