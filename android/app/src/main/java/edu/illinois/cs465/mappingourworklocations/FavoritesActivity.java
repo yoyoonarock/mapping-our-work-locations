@@ -13,8 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
-public class MainActivity extends AppCompatActivity
+/**
+ * Created by Jason on 4/30/2016.
+ */
+public class FavoritesActivity extends AppCompatActivity
 {
     /**
      *  Similar format for all activities with a navigation drawer.
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favorites);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -51,8 +53,14 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent i = new Intent(MainActivity.this, FavoritesActivity.class);
-                startActivity(i);
+                Intent i;
+                switch (position){
+                    case 0:
+                        i = new Intent(FavoritesActivity.this, MainActivity.class);
+                        startActivity(i);
+                    case 1:
+                        return;
+                }
             }
         });
     }
@@ -64,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle("Navigation!");
+                getSupportActionBar().setTitle("Favorites Navigation!");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -120,15 +128,9 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     /**
      *  Activity-specific functions begin here.
      */
-
-
 
 
 }
