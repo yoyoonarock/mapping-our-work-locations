@@ -405,8 +405,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params)
         {
-            try {
-
+            try
+            {
                 String username = mUser;
                 String password = mPassword;
 
