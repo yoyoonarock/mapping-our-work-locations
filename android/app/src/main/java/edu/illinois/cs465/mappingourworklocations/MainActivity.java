@@ -90,20 +90,22 @@ public class MainActivity extends AppCompatActivity
                 switch (position){
                     case 0:
                         // Already in MainActivity - don't switch to a new activity.
-                        return;
+                        break;
                     case 1:
                         // Switch to FavoritesActivity.
                         i = new Intent(MainActivity.this, FavoritesActivity.class);
                         startActivity(i);
+                        break;
                     case 2:
                         // Switch to SearchActivity.
                         i = new Intent(MainActivity.this, SearchActivity.class);
                         startActivity(i);
-                        return;
+                        break;
                     case 3:
                         // Switch to MapActivity.
                         i = new Intent(MainActivity.this, MapActivity.class);
                         startActivity(i);
+                        break;
                     case 4:
                         // Switch to AddEventActivity.
                         // TODO: ADDEVENT

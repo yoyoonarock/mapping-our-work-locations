@@ -12,9 +12,9 @@
 
     <!-- Google MAP API key -->
 
-    <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyDKymeBXNeiFWY5jRUejv6zItpmr2MVyQ0" />
+    <!--<meta-data-->
+        <!--android:name="com.google.android.maps.v2.API_KEY"-->
+        <!--android:value="AIzaSyDKymeBXNeiFWY5jRUejv6zItpmr2MVyQ0" />-->
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -32,16 +32,17 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
-        </activity>
-
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
+
         </activity>
 
         <activity

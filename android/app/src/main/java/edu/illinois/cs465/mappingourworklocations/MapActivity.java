@@ -76,24 +76,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         // Switch to MainActivity.
                         i = new Intent(MapActivity.this, MainActivity.class);
                         startActivity(i);
-                        return;
+                        break;
                     case 1:
                         // Switch to FavoritesActivity.
                         i = new Intent(MapActivity.this, FavoritesActivity.class);
                         startActivity(i);
+                        break;
                     case 2:
                         // Switch to SearchActivity.
                         i = new Intent(MapActivity.this, SearchActivity.class);
                         startActivity(i);
-                        return;
+                        break;
                     case 3:
                         // Already in MapActivity - don't switch to a new activity.
-                        return;
+                        break;
                     case 4:
                         // Switch to AddEventActivity.
                         // TODO: ADDEVENT
                     default:
-                        return;
+                        break;
                 }
             }
         });

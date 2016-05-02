@@ -80,23 +80,25 @@ public class SearchActivity extends AppCompatActivity
                         // Switch to MainActivity.
                         i = new Intent(SearchActivity.this, MainActivity.class);
                         startActivity(i);
+                        break;
                     case 1:
                         // Switch to FavoritesActivity.
                         i = new Intent(SearchActivity.this, FavoritesActivity.class);
                         startActivity(i);
-                        return;
+                        break;
                     case 2:
                         // Already in FavoritesActivity - don't switch to a new activity.
-                        return;
+                        break;
                     case 3:
                         // Switch to MapActivity.
                         i = new Intent(SearchActivity.this, MapActivity.class);
                         startActivity(i);
+                        break;
                     case 4:
                         // Switch to AddEventActivity.
                         // TODO: ADDEVENT
                     default:
-                        return;
+                        break;
                 }
             }
         });

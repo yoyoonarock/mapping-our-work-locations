@@ -26,4 +26,7 @@
     <string name="title_activity_map">Map</string>
 
     <string name="title_activity_results">Search Results</string>
+
+
+    <string name="script_register">cs465mowl.web.engr.illinois.edu/register.php</string>
 </resources>

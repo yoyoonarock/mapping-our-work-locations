@@ -29,8 +29,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -51,13 +55,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "jpao2:cs465test"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -167,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -179,11 +176,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
-//        else if (!isEmailValid(email)) {
-//            mEmailView.setError(getString(R.string.error_invalid_email));
-//            focusView = mEmailView;
-//            cancel = true;
-//        }
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -196,16 +188,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
-    }
-
-//    private boolean isEmailValid(String email) {
-//        //TODO: Replace this with your own logic
-//        return email.contains("@");
-//    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
     /**
@@ -315,38 +297,60 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
-//            String login_url = "http://10.0.2.2/webapp/login.php";
-//
-//            URL url = new URL(login_url);
-//            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//            httpURLConnection.setRequestMethod("POST");
-//            httpURLConnection.setDoOutput(true);
-//            httpURLConnection.setDoInput(true);
-//            OutputStream outputStream = httpURLConnection.getOutputStream();
-//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-//            String data = URLEncoder.encode("login_name", "UTF-8") + "=" +
-//                    URLEncoder.encode(mUser,"UTF-8") + "&" +
-//                    URLEncoder.encode("login_pass","UTF-8") + "&" +
-//                    URLEncoder.encode(mPassword,"UTF-8") + "&";
-
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mUser)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                String username = mUser;
+                String password = mPassword;
+
+                String link = "http://cs465mowl.web.engr.illinois.edu/login.php";
+
+                URL url = new URL(link);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+                conn.setDoInput(true);
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter bw = new BufferedWriter((new OutputStreamWriter(os, "UTF-8")));
+
+                String data = URLEncoder.encode("username","UTF-8") + "=" + URLEncoder.encode(username,"UTF-8") + "&"
+                        + URLEncoder.encode("password","UTF-8") + "=" + URLEncoder.encode(password,"UTF-8");
+
+                bw.write(data);
+                bw.flush();
+                bw.close();
+                os.close();
+
+                InputStream is = conn.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
+
+                String result = "";
+                String line = "";
+
+                while ((line = br.readLine()) != null)
+                {
+                    result += line;
+                }
+
+                br.close();
+                is.close();
+
+                conn.disconnect();
+
+                if (!result.equals("Login successful."))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
-
-            // TODO: register the new account here.
-            return true;
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return false;
+            }
         }
 
         @Override
@@ -355,7 +359,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-//                finish();
+
+                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
             } else {
