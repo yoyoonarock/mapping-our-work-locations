@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/search_background_trans_80">
 
     <!-- The first child in the layout is for the main Activity UI-->
     <LinearLayout
@@ -12,33 +13,67 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/search_container">
+        android:id="@+id/search_container"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
+        /*space*/
+
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            >
+
+            <TextView
+                android:layout_height= "match_parent"
+                android:layout_width="match_parent"
+                />
+        </GridLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Location"
+                android:textStyle="bold"
                 android:id="@+id/text_location" />
+
+            /*space*/
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                >
+
+                <TextView
+                    android:layout_height= "match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </GridLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="DCL"
                     android:id="@+id/checkBox_DCL" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="ECE Building"
                     android:id="@+id/checkBox_ECEB" />
@@ -52,13 +87,15 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Siebel"
                     android:id="@+id/checkBox_Siebel" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Grainger"
                     android:id="@+id/checkBox_Grainger" />
@@ -70,26 +107,61 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            /*space*/
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                >
+
+                <TextView
+                    android:layout_height= "match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </GridLayout>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Type of Room"
+                android:textStyle="bold"
                 android:id="@+id/text_type" />
+
+            /*space*/
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                >
+
+                <TextView
+                    android:layout_height= "match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </GridLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Conference Room"
                     android:id="@+id/checkBox_conferenceRoom" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Classroom"
                     android:id="@+id/checkBox_classroom" />
@@ -98,17 +170,19 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Computer Lab"
                     android:id="@+id/checkBox_computerLab" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Study Carrel"
                     android:id="@+id/checkBox_studyCarrel" />
@@ -117,15 +191,47 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content">
+
+            /*space*/
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                >
+
+                <TextView
+                    android:layout_height= "match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </GridLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Accessories"
+                android:textStyle="bold"
                 android:id="@+id/text_accessories" />
+
+            /*space*/
+
+            <GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="2"
+                >
+
+                <TextView
+                    android:layout_height= "match_parent"
+                    android:layout_width="match_parent"
+                    />
+            </GridLayout>
+
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -133,13 +239,15 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Whiteboard"
                     android:id="@+id/checkBox_whiteboard" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Projector"
                     android:id="@+id/checkBox_projector" />
@@ -152,38 +260,61 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Outlets"
                     android:id="@+id/checkBox_outlets" />
 
                 <CheckBox
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Monitor"
                     android:id="@+id/checkBox_monitor" />
             </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        /*space*/
+
+        <GridLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:rowCount="2"
+            >
+
+            <TextView
+                android:layout_height= "match_parent"
+                android:layout_width="match_parent"
+                />
+        </GridLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Reset"
                 android:id="@+id/btnReset"
                 />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
             <Button
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Search"
-                android:id="@+id/btnSearch"
-                android:layout_toRightOf="@+id/btnReset"/>
-        </RelativeLayout>
+                android:id="@+id/btnSearch"/>
+        </LinearLayout>
     </LinearLayout>
 
 
