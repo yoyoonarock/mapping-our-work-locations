@@ -5,61 +5,79 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.BaseAdapter;
 import android.widget.Space;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 /**
  * Created by Phantomhive on 5/2/2016.
  */
-public class RoomListAdapter extends ArrayAdapter<String> {
-    String[] roomNames;
-    String[] roomNotes;
-    String[] roomFaves;
-    String[] roomAvails;
-
+public class RoomListAdapter extends BaseAdapter
+{
+    Room [] rooms;
     Context context;
     private LayoutInflater inflater = null;
-    public RoomListAdapter(Context context, int resource, String[] names, String[]rooms, String[]times, String[]avails) {
-        super(context, resource);
-        roomNames = names;
-        roomNotes = rooms;
-        roomFaves = times;
-        roomAvails = avails;
+
+    public RoomListAdapter(Context c, Room [] r) {
+        context = c;
+        rooms = r;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public int getCount() {
+        // TODO Auto-generated method stub
+        return rooms.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        // TODO Auto-generated method stub
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        // TODO Auto-generated method stub
+        return position;
     }
 
     public class Holder
     {
         TextView one;
         TextView two;
-        CheckBox three;
+        ToggleButton three;
         Space four;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder = new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.eventlist, null);
+        rowView = inflater.inflate(R.layout.item_room, null);
+
         holder.one = (TextView) rowView.findViewById(R.id.RoomName);
         holder.two = (TextView) rowView.findViewById(R.id.RoomNote);
-        holder.three = (CheckBox) rowView.findViewById(R.id.RoomFavorite);
+        holder.three = (ToggleButton) rowView.findViewById(R.id.RoomFavorite);
         holder.four = (Space) rowView.findViewById(R.id.AvailabilitySquare);
-        holder.one.setText(roomNames[position]);
-        holder.two.setText(roomNotes[position]);
 
-        if(roomAvails[position] == "1") {
+        String roomname = rooms[position].building + " " + rooms[position].roomNumber;
+        holder.one.setText(roomname);
+        holder.two.setText(rooms[position].note);
+
+        if(rooms[position].favorite.equals("1"))
+        {
             holder.three.setChecked(true);
         }
-        else {
+        else
+        {
             holder.three.setChecked(false);
         }
 
-        if(roomAvails[position] == "1") {
+        if(rooms[position].availability.equals("1")) {
             holder.four.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
         }
-        else if(roomAvails[position] == "2") {
+        else if(rooms[position].availability.equals("2")) {
             holder.four.setBackgroundColor(ContextCompat.getColor(context, R.color.yellow));
         }
         else {

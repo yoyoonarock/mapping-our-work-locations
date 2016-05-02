@@ -96,7 +96,9 @@ public class SearchActivity extends AppCompatActivity
                         break;
                     case 4:
                         // Switch to AddEventActivity.
-                        // TODO: ADDEVENT
+                        i = new Intent(SearchActivity.this, EventsActivity.class);
+                        startActivity(i);
+                        break;
                     default:
                         break;
                 }

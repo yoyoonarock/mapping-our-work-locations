@@ -26,6 +26,7 @@
     <string name="title_activity_favorites">Favorites</string>
     <string name="title_activity_search">Search</string>
     <string name="title_activity_map">Map</string>
+    <string name="title_activity_events">Events</string>
 
     <string name="title_activity_results">Search Results</string>
 

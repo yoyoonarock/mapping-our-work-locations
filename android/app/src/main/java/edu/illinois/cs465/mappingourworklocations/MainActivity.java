@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Favorites", "Search", "Map", "Add Event" };
+        String[] osArray = { "Home", "Favorites", "Search", "Map", "Events" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -107,8 +107,10 @@ public class MainActivity extends AppCompatActivity
                         startActivity(i);
                         break;
                     case 4:
-                        // Switch to AddEventActivity.
-                        // TODO: ADDEVENT
+                        // Switch to EventsActivity.
+                        i = new Intent(MainActivity.this, EventsActivity.class);
+                        startActivity(i);
+                        break;
                     default:
                         return;
                 }

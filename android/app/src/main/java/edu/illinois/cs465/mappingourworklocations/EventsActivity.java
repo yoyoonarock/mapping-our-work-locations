@@ -35,7 +35,7 @@ import org.json.JSONObject;
 /**
  * Created by Jason on 4/30/2016.
  */
-public class FavoritesActivity extends AppCompatActivity
+public class EventsActivity extends AppCompatActivity
 {
     /**
      *  Similar format for all activities with a navigation drawer.
@@ -52,24 +52,24 @@ public class FavoritesActivity extends AppCompatActivity
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
-    private static final String TAG_FAVORITES = "favorites";
+    private static final String TAG_EVENTS = "events";
+    private static final String TAG_EVENTNAME = "eventname";
     private static final String TAG_BUILDING = "building";
     private static final String TAG_ROOMNUMBER = "roomnumber";
-    private static final String TAG_NOTE = "note";
+    private static final String TAG_EVENTDATE = "eventdate";
+    private static final String TAG_STARTTIME = "starttime";
+    private static final String TAG_ENDTIME = "endtime";
     private static final String TAG_AVAILABILITY = "availability";
+    private static final String TAG_DESCRIPTION = "description";
 
-
-
-    Room [] rooms;
-
-
+    Event [] events;
 
     JSONArray jsonArray = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorites);
+        setContentView(R.layout.activity_events);
 
         mDrawerList = (ListView)findViewById(R.id.navList);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -97,26 +97,26 @@ public class FavoritesActivity extends AppCompatActivity
                 switch (position){
                     case 0:
                         // Switch to MainActivity.
-                        i = new Intent(FavoritesActivity.this, MainActivity.class);
+                        i = new Intent(EventsActivity.this, MainActivity.class);
                         startActivity(i);
                         break;
                     case 1:
-                        // Already in FavoritesActivity - don't switch to a new activity.
+                        // Switch to FavoritesActivity.
+                        i = new Intent(EventsActivity.this, FavoritesActivity.class);
+                        startActivity(i);
                         break;
                     case 2:
                         // Switch to SearchActivity.
-                        i = new Intent(FavoritesActivity.this, SearchActivity.class);
+                        i = new Intent(EventsActivity.this, SearchActivity.class);
                         startActivity(i);
                         break;
                     case 3:
                         // Switch to MapActivity.
-                        i = new Intent(FavoritesActivity.this, MapActivity.class);
+                        i = new Intent(EventsActivity.this, MapActivity.class);
                         startActivity(i);
                         break;
                     case 4:
-                        // Switch to EventsActivity.
-                        i = new Intent(FavoritesActivity.this, EventsActivity.class);
-                        startActivity(i);
+                        // Already in EventsActivity - don't switch to a new activity.
                         break;
                     default:
                         break;
@@ -202,8 +202,8 @@ public class FavoritesActivity extends AppCompatActivity
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(FavoritesActivity.this);
-            pDialog.setMessage("Loading favorites. Please wait...");
+            pDialog = new ProgressDialog(EventsActivity.this);
+            pDialog.setMessage("Loading events. Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -215,28 +215,15 @@ public class FavoritesActivity extends AppCompatActivity
         protected String doInBackground(String... args)
         {
 //            android.os.Debug.waitForDebugger();
-            String link = "http://cs465mowl.web.engr.illinois.edu/favorites.php";
+            String link = "http://cs465mowl.web.engr.illinois.edu/events.php";
             JSONObject jObj = null;
             String json = "";
             try
             {
-                String username = "jpao2";
                 URL url = new URL(link);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
-                conn.setDoOutput(true);
                 conn.setDoInput(true);
-
-                OutputStream os = conn.getOutputStream();
-                BufferedWriter bw = new BufferedWriter((new OutputStreamWriter(os, "UTF-8")));
-
-                String data = URLEncoder.encode("username", "UTF-8") + "=" +
-                        URLEncoder.encode(username,"UTF-8");
-
-                bw.write(data);
-                bw.flush();
-                bw.close();
-                os.close();
 
                 InputStream is = conn.getInputStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(is,"iso-8859-1"));
@@ -278,30 +265,34 @@ public class FavoritesActivity extends AppCompatActivity
 
                 if (success == 1)
                 {
-                    // Favorites were found.
-                    jsonArray = jObj.getJSONArray(TAG_FAVORITES);
+                    // Events were found.
+                    jsonArray = jObj.getJSONArray(TAG_EVENTS);
 
                     if (jsonArray.length() > 0)
                     {
-                        rooms = new Room[jsonArray.length()];
+                        events = new Event[jsonArray.length()];
                     }
 
                     for (int i = 0; i < jsonArray.length(); i++)
                     {
                         JSONObject c = jsonArray.getJSONObject(i);
 
+                        String eventname = c.getString(TAG_EVENTNAME);
                         String building = c.getString(TAG_BUILDING);
                         String roomNumber = c.getString(TAG_ROOMNUMBER);
-                        String note = c.getString(TAG_NOTE);
+                        String eventdate = c.getString(TAG_EVENTDATE);
+                        String starttime = c.getString(TAG_STARTTIME);
+                        String endtime = c.getString(TAG_ENDTIME);
                         String availability = c.getString(TAG_AVAILABILITY);
+                        String description = c.getString(TAG_DESCRIPTION);
 
-                        Room room = new Room(building, roomNumber, note, "1", availability);
-                        rooms[i] = room;
+                        Event event = new Event(eventname, building, roomNumber, eventdate, starttime, endtime, availability, description);
+                        events[i] = event;
                     }
                 }
                 else
                 {
-                    // No favorites were found.
+                    // No events were found.
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -319,9 +310,12 @@ public class FavoritesActivity extends AppCompatActivity
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
                 public void run() {
-                    ListView lv = (ListView) findViewById(R.id.listFavorites);
-
-                    RoomListAdapter adapter = new RoomListAdapter(FavoritesActivity.this, rooms);
+                    ListView lv = (ListView) findViewById(R.id.listAllEvents);
+                    if (events.length == 0)
+                    {
+                        return;
+                    }
+                    EventListAdapter adapter = new EventListAdapter(EventsActivity.this, events);
 
                     lv.setAdapter(adapter);
                 }

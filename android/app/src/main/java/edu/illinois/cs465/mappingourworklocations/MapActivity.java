@@ -62,7 +62,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void addDrawerItems() {
-        String[] osArray = { "Home", "Favorites", "Search", "Map", "Add Event" };
+        String[] osArray = { "Home", "Favorites", "Search", "Map", "Events" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
 
@@ -91,8 +91,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         // Already in MapActivity - don't switch to a new activity.
                         break;
                     case 4:
-                        // Switch to AddEventActivity.
-                        // TODO: ADDEVENT
+                        // Switch to EventsActivity.
+                        i = new Intent(MapActivity.this, EventsActivity.class);
+                        startActivity(i);
                     default:
                         break;
                 }

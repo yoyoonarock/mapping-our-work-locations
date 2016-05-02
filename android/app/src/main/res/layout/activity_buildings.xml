@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- The first child in the layout is for the main Activity UI-->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="edu.illinois.cs465.mappingourworklocations.buildingresults">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textSearchResults"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:text="Search Results"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:gravity="center" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:id="@+id/relativeLayoutDCL">
+
+
+                <ImageView
+                    android:id="@+id/imageDCL"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/favorites_background_trans_0"
+                    android:alpha="0.15"
+                    />
+
+                <TextView
+                    android:id="@+id/textDCLText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DCL"
+                    android:textSize="32sp"
+                    android:paddingLeft="@dimen/main_menu_left_padding"
+                    android:paddingTop="@dimen/main_menu_top_padding"
+                    android:textColor="@color/colorTextPrimary"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:id="@+id/relativeLayoutECEB">
+
+                <ImageView
+                    android:id="@+id/imageECEB"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/search_background_trans_0"
+                    android:alpha="0.15"
+                    />
+
+                <TextView
+                    android:id="@+id/textECEBText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ECEB"
+                    android:textSize="32sp"
+                    android:paddingLeft="@dimen/main_menu_left_padding"
+                    android:paddingTop="@dimen/main_menu_top_padding"
+                    android:textColor="@color/colorTextPrimary"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:id="@+id/relativeLayoutGrainger">
+
+                <ImageView
+                    android:id="@+id/imageGrainger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/map_background_trans_0"
+                    android:alpha="0.15"
+                    />
+
+                <TextView
+                    android:id="@+id/textGraingerText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GRAINGER"
+                    android:textSize="32sp"
+                    android:paddingLeft="@dimen/main_menu_left_padding"
+                    android:paddingTop="@dimen/main_menu_top_padding"
+                    android:textColor="@color/colorTextPrimary"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25"
+                android:id="@+id/relativeLayoutSiebel">
+
+                <ImageView
+                    android:id="@+id/imageSiebel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/map_background_trans_0"
+                    android:alpha="0.15"
+                    />
+
+                <TextView
+                    android:id="@+id/textSiebelText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SIEBEL"
+                    android:textSize="32sp"
+                    android:paddingLeft="@dimen/main_menu_left_padding"
+                    android:paddingTop="@dimen/main_menu_top_padding"
+                    android:textColor="@color/colorTextPrimary"
+                    />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!-- Side navigation drawer UI -->
+    <ListView
+        android:id="@+id/navList"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="#ffeeeeee"/>
+
+</android.support.v4.widget.DrawerLayout>
